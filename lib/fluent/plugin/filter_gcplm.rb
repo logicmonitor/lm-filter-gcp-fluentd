@@ -15,6 +15,7 @@ module Fluent::Plugin
       resourceMap = Hash.new
       project_id = record.dig("resource","labels", "project_id")
       region = record.dig("resource","labels", "region")
+
       case
       when record['textPayload']
         message = record['textPayload']
