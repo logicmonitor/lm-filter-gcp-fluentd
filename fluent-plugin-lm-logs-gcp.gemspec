@@ -13,8 +13,8 @@ Gem::Specification.new do |spec|
   spec.homepage                       = "https://www.logicmonitor.com"
   spec.license                        = "Apache-2.0"
 
-  spec.metadata["source_code_uri"]    = "https://github.com/logicmonitor/lm-filter-gcp-fluentd"
-  spec.metadata["documentation_uri"]  = "https://www.rubydoc.info/gems/lm-filter-gcp-fluentd"
+  spec.metadata["source_code_uri"]    = "https://github.com/logicmonitor/lm-logs-fluentd-gcp-filter"
+  spec.metadata["documentation_uri"]  = "https://www.rubydoc.info/gems/lm-logs-fluentd-gcp-filter"
 
   spec.files         = ["Gemfile", "README.md", "LICENSE", "Rakefile", "fluent-plugin-lm-logs-gcp.gemspec", "lib/fluent/plugin/filter_gcplm.rb"]
   spec.require_paths = ["lib"]

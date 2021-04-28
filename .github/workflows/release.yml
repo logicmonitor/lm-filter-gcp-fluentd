@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: docker build -t lm-filter-gcp-fluentd .
+        run: docker build -t lm-logs-fluentd-gcp-filter .
       - name: Start container
-        run: id=$(docker create lm-filter-gcp-fluentd) && docker cp $id:/logicmonitor/release.gem .
+        run: id=$(docker create lm-logs-fluentd-gcp-filter) && docker cp $id:/logicmonitor/release.gem .
       - name: Create directory for credentials
         run: mkdir ~/.gem && touch ~/.gem/credentials
       - name: Add credentials
