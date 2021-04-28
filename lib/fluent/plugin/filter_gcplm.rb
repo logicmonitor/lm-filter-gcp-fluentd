@@ -9,6 +9,18 @@ module Fluent::Plugin
       # Do the usual configuration here
     end
 
+# This method is called when starting.
+    # Open sockets or files here.
+    def start
+      super
+    end
+
+    # This method is called when shutting down.
+    # Shutdown the thread and close sockets or files here.
+    def shutdown
+      super
+    end
+
     def filter(tag, time, record)
       message = String.new
       resourceType = record.dig("resource","type")
