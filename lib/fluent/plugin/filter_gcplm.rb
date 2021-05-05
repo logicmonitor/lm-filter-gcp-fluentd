@@ -27,6 +27,7 @@ module Fluent::Plugin
       resourceMap = Hash.new
       project_id = record.dig("resource","labels", "project_id")
       region = record.dig("resource","labels", "region")
+      filteredRecord = Hash.new
 
       case
       when record['textPayload']
@@ -56,9 +57,10 @@ module Fluent::Plugin
         resourceMap = {"system.gcp.projectId" => project_id, "system.cloud.category" => 'GCP/LMAccount'}
       end
 
-      record['message'] = message
-      record['_lm.resourceId'] = resourceMap
-      record
+      filteredRecord['message'] = message
+      filteredRecord['_lm.resourceId'] = resourceMap
+      filteredRecord['timestamp'] = record['timestamp']
+      filteredRecord
     end
   end
 end

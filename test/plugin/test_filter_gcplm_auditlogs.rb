@@ -104,75 +104,12 @@ class FluentGCPLMAuditLogsTest < Test::Unit::TestCase
                         "system.cloud.category" => 'GCP/LMAccount'
                         },
                     "message" =>"{\"@type\": \"type.googleapis.com/google.cloud.audit.AuditLog\",\"status\": {\"message\": \"Instance Group Manager 'projects/272452262635/zones/us-central1-c/instanceGroupManagers/aef-backend-20180822t164014-00' initiated recreateInstance on instance 'projects/272452262635/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j'. Reason: instance's current action is VERIFYING, but health status is TIMEOUT.\"},\"authenticationInfo\": {\"principalEmail\": \"system@google.com\"},\"serviceName\": \"compute.googleapis.com\",\"methodName\": \"compute.instances.repair.recreateInstance\",\"resourceName\": \"projects/development-198123/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j\",\"request\": {\"@type\": \"type.googleapis.com/compute.instances.repair.recreateInstance\"}}",
-                    "insertId" => "bdl1yydsszy",
-                    "resource" => {
-                        "type" => "gce_instance",
-                        "labels" => {
-                            "zone" => "us-central1-c",
-                            "project_id" => "development-198123",
-                            "instance_id" => "5229353360185505344"
-                        }
-                    },
-                    "timestamp" => "2021-04-27T06:44:51.535974Z",
-                    "severity" => "INFO",
-                    "logName" => "projects/development-198123/logs/cloudaudit.googleapis.com%2Fsystem_event",
-                    "operation" => {
-                        "id" => "repair-1619505891524-5c0ee99603e9a-862341d5-24923c3c",
-                        "producer" => "compute.instances.repair.recreateInstance",
-                        "first" => true,
-                        "last" => true
-                        },
-                    "receiveTimestamp" => "2021-04-27T06:44:51.904218698Z",
-                   "protoPayload" => {
-                     "@type" => "type.googleapis.com/google.cloud.audit.AuditLog",
-                     "status" => {
-                       "message" => "Instance Group Manager 'projects/272452262635/zones/us-central1-c/instanceGroupManagers/aef-backend-20180822t164014-00' initiated recreateInstance on instance 'projects/272452262635/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j'. Reason: instance's current action is VERIFYING, but health status is TIMEOUT."
-                       },
-                     "authenticationInfo" => {
-                       "principalEmail" => "system@google.com"
-                       },
-                     "serviceName" => "compute.googleapis.com",
-                     "methodName" => "compute.instances.repair.recreateInstance",
-                     "resourceName" => "projects/development-198123/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j",
-                     "request" => {
-                       "@type" => "type.googleapis.com/compute.instances.repair.recreateInstance"
-                       }
-                     }
+                    "timestamp" => "2021-04-27T06:44:51.535974Z"
                     },
                     {
                     "_lm.resourceId" => {},
                     "message" =>"{\"@type\": \"type.googleapis.com/google.cloud.audit.AuditLog\",\"status\": {\"message\": \"Instance Group Manager 'projects/272452262635/zones/us-central1-c/instanceGroupManagers/aef-backend-20180822t164014-00' initiated recreateInstance on instance 'projects/272452262635/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j'. Reason: instance's current action is VERIFYING, but health status is TIMEOUT.\"},\"authenticationInfo\": {\"principalEmail\": \"system@google.com\"},\"serviceName\": \"compute.googleapis.com\",\"methodName\": \"compute.instances.repair.recreateInstance\",\"resourceName\": \"projects/development-198123/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j\",\"request\": {\"@type\": \"type.googleapis.com/compute.instances.repair.recreateInstance\"}}",
-                    "resource" => {
-                        "type" => "gce_instance",
-                        "labels" => {
-                            "project_id" => "development-198123"
-                            }
-                        },
-                   "protoPayload" => {
-                     "status" => {
-                       "message" => "Instance Group Manager 'projects/272452262635/zones/us-central1-c/instanceGroupManagers/aef-backend-20180822t164014-00' initiated recreateInstance on instance 'projects/272452262635/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j'. Reason: instance's current action is VERIFYING, but health status is TIMEOUT."
-                       },
-                     "authenticationInfo" => {
-                       "principalEmail" => "system@google.com"
-                       },
-                     "serviceName" => "compute.googleapis.com",
-                     "methodName" => "compute.instances.repair.recreateInstance",
-                     "resourceName" => "projects/development-198123/zones/us-central1-c/instances/aef-backend-20180822t164014-b75j",
-                     "request" => {
-                       "@type" => "type.googleapis.com/compute.instances.repair.recreateInstance"
-                       }
-                     },
-                   "insertId" => "bdl1yydsszy",
-                   "timestamp" => "2021-04-27T06:44:51.535974Z",
-                   "severity" => "INFO",
-                   "logName" => "projects/development-198123/logs/cloudaudit.googleapis.com%2Fsystem_event",
-                   "operation" => {
-                    "id" => "repair-1619505891524-5c0ee99603e9a-862341d5-24923c3c",
-                    "producer" => "compute.instances.repair.recreateInstance",
-                    "first" => true,
-                    "last" => true
-                     },
-                   "receiveTimestamp" => "2021-04-27T06:44:51.904218698Z"
+                    "timestamp" => "2021-04-27T06:44:51.535974Z"
                     }]
                 actual = filter(messages)
                 actual.each_with_index { |val, index| assert_equal(expected[index]["_lm.resourceId"], actual[index]["_lm.resourceId"]) }
