@@ -50,27 +50,11 @@ class FluentGCPLMCFTest < Test::Unit::TestCase
 
                 expected = [{
                     "_lm.resourceId" => {
-                        "system.gcp.resourcename" =>"projects/logicmonitor.com:api-project-650342240768/locations/asia-south1/functions/testfunctionlogsToPubsub"
+                        "system.gcp.resourcename" =>"projects/logicmonitor.com:api-project-650342240768/locations/asia-south1/functions/testfunctionlogsToPubsub",
+                        "system.cloud.category" => 'GCP/CloudFunction'
                         },
                     "message" =>"Function execution took 200 ms, finished with status: 'ok'",
-                    "insertId" => "000000-d8f6e03b-271c-4c7d-9780-4c63d37ccda7",
-                    "resource" => {
-                      "type" => "cloud_function",
-                      "labels" => {
-                        "function_name" => "testfunctionlogsToPubsub",
-                        "region" => "asia-south1",
-                        "project_id" => "logicmonitor.com:api-project-650342240768"
-                        }
-                      },
-                    "timestamp" => "2021-04-15T06:14:10.997438123Z",
-                    "severity" => "DEBUG",
-                    "labels" => {
-                      "execution_id" => "d4mdjbva6jz2"
-                      },
-                    "logName" => "projects/logicmonitor.com:api-project-650342240768/logs/cloudfunctions.googleapis.com%2Fcloud-functions",
-                    "trace" => "projects/logicmonitor.com:api-project-650342240768/traces/72e2cdf9e92a630b981f61e9e498f2e0",
-                    "receiveTimestamp" => "2021-04-08T09:59:25.195011779Z",
-                    "textPayload" => "Function execution took 200 ms, finished with status: 'ok'",
+                    "timestamp" => "2021-04-15T06:14:10.997438123Z"
                 }]
                 actual = filter(messages)
                 actual.each_with_index { |val, index| assert_equal(expected[index]["_lm.resourceId"], actual[index]["_lm.resourceId"]) }
