@@ -42,14 +42,14 @@ module Fluent::Plugin
       case resourceType
       when 'gce_instance'
         if (record.dig("resource","labels", "instance_id"))
-            resourceMap = {"system.gcp.resourceid" => record.dig("resource","labels", "instance_id")}
+            resourceMap = {"system.gcp.resourceid" => record.dig("resource","labels", "instance_id"), "system.cloud.category" => 'GCP/ComputeEngine'}
         elsif (record.dig("labels", "compute.googleapis.com/resource_name"))
-            resourceMap = {"system.gcp.resourcename" => record.dig("labels", "compute.googleapis.com/resource_name")}
+            resourceMap = {"system.gcp.resourcename" => record.dig("labels", "compute.googleapis.com/resource_name"), "system.cloud.category" => 'GCP/ComputeEngine'}
         end
       when 'cloud_function'
-        resourceMap = {"system.gcp.resourcename" => "projects/" + project_id + "/locations/" + region +"/functions/" + record.dig("resource","labels", "function_name")}
+        resourceMap = {"system.gcp.resourcename" => "projects/" + project_id + "/locations/" + region +"/functions/" + record.dig("resource","labels", "function_name"), "system.cloud.category" => 'GCP/CloudFunction'}
       when 'cloudsql_database'
-        resourceMap = {"system.gcp.resourceid" => record.dig("resource","labels", "database_id")}
+        resourceMap = {"system.gcp.resourceid" => record.dig("resource","labels", "database_id"), "system.cloud.category" => 'GCP/CloudSQL'}
       end
 
       if(record.key?("protoPayload") && record.dig('protoPayload','@type') == "type.googleapis.com/google.cloud.audit.AuditLog")

@@ -50,7 +50,8 @@ class FluentGCPLMCFTest < Test::Unit::TestCase
 
                 expected = [{
                     "_lm.resourceId" => {
-                        "system.gcp.resourcename" =>"projects/logicmonitor.com:api-project-650342240768/locations/asia-south1/functions/testfunctionlogsToPubsub"
+                        "system.gcp.resourcename" =>"projects/logicmonitor.com:api-project-650342240768/locations/asia-south1/functions/testfunctionlogsToPubsub",
+                        "system.cloud.category" => 'GCP/CloudFunction'
                         },
                     "message" =>"Function execution took 200 ms, finished with status: 'ok'",
                     "insertId" => "000000-d8f6e03b-271c-4c7d-9780-4c63d37ccda7",
