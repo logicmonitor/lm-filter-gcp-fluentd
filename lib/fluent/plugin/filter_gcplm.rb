@@ -62,6 +62,8 @@ module Fluent::Plugin
         resourceMap = {"system.gcp.resourceid" => record.dig("resource", "labels", "database_id"), "system.cloud.category" => 'GCP/CloudSQL'}
       when 'cloud_run_revision'
         resourceMap = {"system.gcp.resourcename" => record.dig("resource", "labels", "service_name"), "system.cloud.category" => 'GCP/CloudRun'}
+      when 'cloud_composer_environment'
+        resourceMap = {"system.gcp.resourcename" => "projects/" + project_id + "/locations/" + record.dig("resource", "labels", "location") + "/environments/" + record.dig("resource", "labels", "environment_name"), "system.cloud.category" => 'GCP/CloudComposer'}
       end
 
       if(record.key?("protoPayload") && record.dig('protoPayload', '@type') == "type.googleapis.com/google.cloud.audit.AuditLog")
