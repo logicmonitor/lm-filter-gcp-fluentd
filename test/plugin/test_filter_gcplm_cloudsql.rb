@@ -47,7 +47,8 @@ class FluentGCPLMCloudSqlTest < Test::Unit::TestCase
                 expected = [{
                     "_lm.resourceId" => {
                         "system.gcp.resourceid" =>"development-198123:rwaver-sql-1",
-                        "system.cloud.category" => 'GCP/CloudSQL'
+                        "system.cloud.category" => 'GCP/CloudSQL',
+                        "system.gcp.projectId" =>"development-198123"
                         },
                     "message" =>"2021-04-27T14:34:16.352086Z 0 [ERROR] Could not successfully notify external app of semisync status change before timeout.",
                     "timestamp" => "2021-04-27T14:34:16.352421Z"

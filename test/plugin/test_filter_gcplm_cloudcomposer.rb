@@ -50,7 +50,8 @@ class FluentGCPLMCloudComposerTest < Test::Unit::TestCase
                 expected = [{
                     "_lm.resourceId" => {
                         "system.gcp.resourcename" => "projects/development-198123/locations/asia-south1/environments/example-environment",
-                        "system.cloud.category" => "GCP/CloudComposer"
+                        "system.cloud.category" => "GCP/CloudComposer",
+                        "system.gcp.projectId" =>"development-198123"
                         },
                     "message" => "[2021-05-11 11:16:19,726] {dag_processing.py:1316} INFO - Failing jobs without heartbeat after 2021-05-11 11:11:19.726821+00:00\n",
                     "timestamp" => "2021-05-11T11:17:12.683674946Z"
