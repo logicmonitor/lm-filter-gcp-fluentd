@@ -46,7 +46,8 @@ class FluentGCPLMMessageTest < Test::Unit::TestCase
 
           expected = [{
               "_lm.resourceId" => {
-                  "system.gcp.resourceid" =>"development-198123:testmysqllogstol"
+                  "system.gcp.resourceid" =>"development-198123:testmysqllogstol",
+                  "system.gcp.projectId" =>"development-198123"
                   },
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
               "timestamp" => "2021-04-28T10:13:07.252739Z"
@@ -83,7 +84,8 @@ class FluentGCPLMMessageTest < Test::Unit::TestCase
 
           expected=[{
               "_lm.resourceId" => {
-                  "system.gcp.resourceid" =>"7637443554836808513"
+                  "system.gcp.resourceid" =>"7637443554836808513",
+                  "system.gcp.projectId" =>"development-198123"
                   },
               "message" =>"{\"message\":\"startup-script: chmod: changing permissions of '/etc/systemd/system/dbus-org.freedesktop.network1.service': Read-only file system\",\"localTimestamp\":\"2021-04-28T14:32:03.2422Z\"}",
               "timestamp" => "2021-04-28T14:32:03.243408039Z"
@@ -203,7 +205,8 @@ class FluentGCPLMMessageTest < Test::Unit::TestCase
 
             expected = [{
                 "_lm.resourceId" => {
-                    "system.gcp.resourceid" =>"development-198123:testmysqllogstol"
+                    "system.gcp.resourceid" =>"development-198123:testmysqllogstol",
+                    "system.gcp.projectId" =>"development-198123"
                     },
                 "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
                 "timestamp" => "2021-04-28T10:13:07.252739Z"

@@ -63,7 +63,8 @@ class FluentGCPLMCloudRunTest < Test::Unit::TestCase
                 expected = [{
                     "_lm.resourceId" => {
                         "system.gcp.resourcename" => "hello",
-                        "system.cloud.category" => 'GCP/CloudRun'
+                        "system.cloud.category" => 'GCP/CloudRun',
+                        "system.gcp.projectId" =>"development-198123"
                         },
                     "message" => "{\"requestMethod\":\"GET\",\"requestUrl\":\"https:\/\/hello-tkbjruipeq-uc.a.run.app\/\",\"requestSize\":\"345\",\"status\":500,\"userAgent\":\"LogicMonitor SiteMonitor\/1.0\",\"remoteIp\":\"34.223.95.106\",\"serverIp\":\"216.239.36.53\",\"latency\":\"0.004592759s\",\"protocol\":\"HTTP\/1.1\"}",
                     "timestamp" => "2021-05-10T05:57:08.647307Z"
@@ -98,8 +99,9 @@ class FluentGCPLMCloudRunTest < Test::Unit::TestCase
                 expected = [{
                     "_lm.resourceId" => {
                         "system.gcp.resourcename" => "logging-manual",
-                        "system.cloud.category" => 'GCP/CloudRun'
-                        },
+                        "system.cloud.category" => 'GCP/CloudRun',
+                        "system.gcp.projectId" =>"development-198123"
+                    },
                     "message" => "> logging-manual@ start /usr/src/app",
                     "timestamp" => "2021-05-10T05:02:17.921246Z"
                     }]

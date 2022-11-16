@@ -67,9 +67,11 @@ module Fluent::Plugin
       end
 
       if(record.key?("protoPayload") && record.dig('protoPayload', '@type') == "type.googleapis.com/google.cloud.audit.AuditLog")
-        resourceMap = {"system.gcp.projectId" => project_id, "system.cloud.category" => 'GCP/LMAccount'}
+        resourceMap = {"system.cloud.category" => 'GCP/LMAccount'}
       end
 
+
+      resourceMap['system.gcp.projectId'] = project_id if !resourceMap.empty?
       # Creating a new record which is further sent to LM
       filteredRecord['message'] = message
       filteredRecord['_lm.resourceId'] = resourceMap

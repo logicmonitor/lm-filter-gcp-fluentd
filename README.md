@@ -4,4 +4,6 @@ This filter plugin is provided for mapping the logs coming from GCP pubsub to '_
 * Google Cloud Functions
 * Google Cloud SQL
 * Google Audit Logs
+* Google Cloud Composer
+* Google Cloud Run
 
