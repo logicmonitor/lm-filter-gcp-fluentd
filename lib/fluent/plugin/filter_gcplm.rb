@@ -73,6 +73,12 @@ module Fluent::Plugin
 
       resourceMap['system.gcp.projectId'] = project_id if !resourceMap.empty?
       # Creating a new record which is further sent to LM
+      record.each do |key, value|
+        if (key!="textPayload" && key!="jsonPayload" && key!="protoPayload")
+          filteredRecord["#{key}"] = value
+        end
+      end
+
       filteredRecord['message'] = message
       filteredRecord['_lm.resourceId'] = resourceMap
       filteredRecord['timestamp'] = record['timestamp']
