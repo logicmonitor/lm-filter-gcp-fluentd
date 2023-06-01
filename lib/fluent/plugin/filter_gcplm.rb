@@ -4,7 +4,7 @@ module Fluent::Plugin
   class GCPLMFilter < Filter
     Fluent::Plugin.register_filter('gcplm', self)
 
-    METADATA_KEYS_TO_RENAME = {"logName" => "event_id", "trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type"}.freeze
+    METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type"}.freeze
     STATIC_METADATA = {"_integration" => "gcp"}
 
     config_param :metadata_keys, :array, default: ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest", "trace", "spanId" ], value_type: :string
