@@ -4,6 +4,12 @@ module Fluent::Plugin
   class GCPLMFilter < Filter
     Fluent::Plugin.register_filter('gcplm', self)
 
+    METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type"}.freeze
+    STATIC_METADATA = {"_integration" => "gcp"}
+
+    config_param :metadata_keys, :array, default: ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest"], value_type: :string
+    config_param :use_default_severity, :bool, default: false 
+
     def configure(conf)
       super
       # Do the usual configuration here
@@ -12,6 +18,12 @@ module Fluent::Plugin
 # This method is called when starting.
     # Open sockets or files here.
     def start
+      @final_metadata_keys = Hash.new
+      if @metadata_keys
+        @metadata_keys.each do | nested_key |
+          @final_metadata_keys[nested_key] = nested_key.to_s.split('.') 
+        end  
+      end  
       super
     end
 
@@ -76,6 +88,27 @@ module Fluent::Plugin
       filteredRecord['message'] = message
       filteredRecord['_lm.resourceId'] = resourceMap
       filteredRecord['timestamp'] = record['timestamp']
+
+      # Add metadata
+      if @final_metadata_keys 
+        @final_metadata_keys.each do | key, value |
+          final_key = METADATA_KEYS_TO_RENAME[key] ? METADATA_KEYS_TO_RENAME[key] : key
+          nestedVal = record
+          value.each { |x| nestedVal = nestedVal[x] }
+          if nestedVal != nil
+            filteredRecord[final_key] = nestedVal
+          end  
+        end  
+      end  
+
+      # Add static metadata
+      STATIC_METADATA.each { | key, value| filteredRecord[key] = value }
+
+      # Add default severity if does not exist 
+      if !filteredRecord["severity"] and @use_default_severity
+        filteredRecord["severity"] = "DEFAULT"
+      end   
+
       filteredRecord
     end
   end
