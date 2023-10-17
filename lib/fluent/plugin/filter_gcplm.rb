@@ -4,7 +4,7 @@ module Fluent::Plugin
   class GCPLMFilter < Filter
     Fluent::Plugin.register_filter('gcplm', self)
 
-    METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type"}.freeze
+    METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type", "severity" => "log_level"}.freeze
     STATIC_METADATA = {"_integration" => "gcp"}
 
     config_param :metadata_keys, :array, default: ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest"], value_type: :string
@@ -107,8 +107,8 @@ module Fluent::Plugin
       STATIC_METADATA.each { | key, value| filteredRecord[key] = value }
 
       # Add default severity if does not exist 
-      if !filteredRecord["severity"] and @use_default_severity
-        filteredRecord["severity"] = "DEFAULT"
+      if !filteredRecord["log_level"] and @use_default_severity
+        filteredRecord["log_level"] = "DEFAULT"
       end   
 
       filteredRecord

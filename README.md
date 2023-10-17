@@ -12,4 +12,4 @@ This filter plugin is provided for mapping the logs coming from GCP pubsub to '_
 | Property | Description |
 | --- | --- |
 | `metadata_keys` | Array of keys to be added as metadata. Filter will look for these keys in fluentd record and extract those if exist. in case of nested json, whole sub json would be added. default ` ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest"] ` . few keys will be renamed as part of metadata standardization in Logicmonitor : ` {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type"}`|
-| `use_default_severity` | When `true`, and log record does not have severity, severity=`DEFAULT` would be added to log. default `false`.  |
+| `use_default_severity` | When `true`, and log record does not have severity, log_level=`DEFAULT` would be added to log. default `false`.  |
