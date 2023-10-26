@@ -51,7 +51,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                 "system.cloud.category" => 'GCP/CloudSQL'
                 },
                 "_type" => "cloudsql_database",
-                "severity" => "INFO",
+                "log_level" => "INFO",
                 "_integration" => "gcp",
                 "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
             "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
@@ -139,7 +139,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                     "database_id" => "development-198123:testmysqllogstolm"
                     }
                 },
-                "severity" => "INFO",
+            "severity" => "INFO",
             "timestamp" => "2021-04-28T10:13:07.252739Z",
             "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
             "receiveTimestamp" => "2021-04-28T10:13:08.349276124Z"
@@ -152,7 +152,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                   "system.cloud.category" => 'GCP/CloudSQL'
                   },
                   "_type" => "cloudsql_database",
-                  "severity" => "DEFAULT",
+                  "log_level" => "DEFAULT",
                   "_integration" => "gcp",
                   "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
@@ -170,7 +170,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                     "system.cloud.category" => 'GCP/CloudSQL'
                     },
                     "_type" => "cloudsql_database",
-                    "severity" => "INFO",
+                    "log_level" => "INFO",
                     "_integration" => "gcp",
                     "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
                 "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
@@ -221,7 +221,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                   "system.gcp.projectId" =>"development-198123",
                   "system.cloud.category" => 'GCP/CloudSQL'
                   },
-                  "severity" => "DEFAULT",
+                  "log_level" => "DEFAULT",
                   "_integration" => "gcp",
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
               "timestamp" => "2021-04-28T10:13:07.252739Z",
