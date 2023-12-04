@@ -36,7 +36,6 @@ module Fluent::Plugin
     end
 
     def filter(tag, time, record)
-      puts "inside plugin"
       message = String.new
       # The type of service in GCP
       resourceType = record.dig("resource", "type")
@@ -112,10 +111,8 @@ module Fluent::Plugin
       # Add tenantid
       tenant_id_from_record = record[LM_TENANT_ID_KEY]
       if (tenant_id_from_record != nil)
-        puts "tenantId in record found #{tenant_id_from_record}"
         filteredRecord[LM_TENANT_ID_KEY] = tenant_id_from_record
       elsif @lm_tenant_id != nil && ! @lm_tenant_id.empty?
-        puts "tenantID from config #{@lm_tenant_id}"
         filteredRecord[LM_TENANT_ID_KEY] = @lm_tenant_id
       end
       # Add default severity if does not exist
