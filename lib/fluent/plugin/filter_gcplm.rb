@@ -6,9 +6,11 @@ module Fluent::Plugin
 
     METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type", "severity" => "log_level"}.freeze
     STATIC_METADATA = {"_integration" => "gcp"}
+    LM_TENANT_ID_KEY = "_lm.tenantId".freeze
 
     config_param :metadata_keys, :array, default: ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest"], value_type: :string
-    config_param :use_default_severity, :bool, default: false 
+    config_param :use_default_severity, :bool, default: false
+    config_param :lm_tenant_id, :string, default: nil
 
     def configure(conf)
       super
@@ -21,9 +23,9 @@ module Fluent::Plugin
       @final_metadata_keys = Hash.new
       if @metadata_keys
         @metadata_keys.each do | nested_key |
-          @final_metadata_keys[nested_key] = nested_key.to_s.split('.') 
-        end  
-      end  
+          @final_metadata_keys[nested_key] = nested_key.to_s.split('.')
+        end
+      end
       super
     end
 
@@ -92,25 +94,31 @@ module Fluent::Plugin
       filteredRecord['timestamp'] = record['timestamp']
 
       # Add metadata
-      if @final_metadata_keys 
+      if @final_metadata_keys
         @final_metadata_keys.each do | key, value |
           final_key = METADATA_KEYS_TO_RENAME[key] ? METADATA_KEYS_TO_RENAME[key] : key
           nestedVal = record
           value.each { |x| nestedVal = nestedVal[x] }
           if nestedVal != nil
             filteredRecord[final_key] = nestedVal
-          end  
-        end  
-      end  
+          end
+        end
+      end
 
       # Add static metadata
       STATIC_METADATA.each { | key, value| filteredRecord[key] = value }
 
-      # Add default severity if does not exist 
+      # Add tenantid
+      tenant_id_from_record = record[LM_TENANT_ID_KEY]
+      if (tenant_id_from_record != nil)
+        filteredRecord[LM_TENANT_ID_KEY] = tenant_id_from_record
+      elsif @lm_tenant_id != nil && ! @lm_tenant_id.empty?
+        filteredRecord[LM_TENANT_ID_KEY] = @lm_tenant_id
+      end
+      # Add default severity if does not exist
       if !filteredRecord["log_level"] and @use_default_severity
         filteredRecord["log_level"] = "DEFAULT"
-      end   
-
+      end
       filteredRecord
     end
   end
