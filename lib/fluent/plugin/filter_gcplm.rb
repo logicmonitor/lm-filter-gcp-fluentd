@@ -5,7 +5,7 @@ module Fluent::Plugin
     Fluent::Plugin.register_filter('gcplm', self)
 
     METADATA_KEYS_TO_RENAME = {"trace" => "trace_id", "spanId" => "span_id","resource.type" => "_type", "severity" => "log_level"}.freeze
-    STATIC_METADATA = {"_integration" => "gcp", "_resource.type" => "GCP"}
+    STATIC_METADATA = {"_integration" => "gcp"}
     LM_TENANT_ID_KEY = "_lm.tenantId".freeze
 
     config_param :metadata_keys, :array, default: ["severity", "logName", "labels", "resource.type", "resource.labels", "httpRequest"], value_type: :string
@@ -89,6 +89,7 @@ module Fluent::Plugin
 
       resourceMap['system.gcp.projectId'] = project_id if !resourceMap.empty?
       # Creating a new record which is further sent to LM
+      filteredRecord["_resource.type"] = "GCP"
       filteredRecord['message'] = message
       filteredRecord['_lm.resourceId'] = resourceMap
       filteredRecord['timestamp'] = record['timestamp']
