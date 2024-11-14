@@ -53,6 +53,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                 "_type" => "cloudsql_database",
                 "log_level" => "INFO",
                 "_integration" => "gcp",
+                "_resource.type" => "GCP",
                 "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
             "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
             "timestamp" => "2021-04-28T10:13:07.252739Z",
@@ -95,6 +96,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                   },
                   "_type" => "cloudsql_database",
                   "_integration" => "gcp",
+                  "_resource.type" => "GCP",
                   "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
               "timestamp" => "2021-04-28T10:13:07.252739Z",
@@ -153,6 +155,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                   "_type" => "cloudsql_database",
                   "log_level" => "DEFAULT",
                   "_integration" => "gcp",
+                  "_resource.type" => "GCP",
                   "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
               "timestamp" => "2021-04-28T10:13:07.252739Z",
@@ -171,6 +174,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                     "_type" => "cloudsql_database",
                     "log_level" => "INFO",
                     "_integration" => "gcp",
+                    "_resource.type" => "GCP",
                     "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
                 "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
                 "timestamp" => "2021-04-28T10:13:07.252739Z",
@@ -221,6 +225,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
                   },
                   "log_level" => "DEFAULT",
                   "_integration" => "gcp",
+                  "_resource.type" => "GCP",
               "message" =>"Permission monitoring.timeSeries.create denied (or the resource may not exist)",
               "timestamp" => "2021-04-28T10:13:07.252739Z",
                   "resource.labels.project_id" => "development-198123",
@@ -264,6 +269,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
               },
               "_lm.tenantId" => "abc",
               "_integration" => "gcp",
+              "_resource.type" => "GCP",
               "_type" => "cloudsql_database",
               "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "resource.labels" => {
@@ -308,6 +314,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
               },
               "_lm.tenantId" => "def",
               "_integration" => "gcp",
+              "_resource.type" => "GCP",
               "_type" => "cloudsql_database",
               "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "resource.labels" => {
@@ -350,6 +357,7 @@ class FluentGCPLMVMTest < Test::Unit::TestCase
               "system.cloud.category" => 'GCP/CloudSQL'
               },
               "_integration" => "gcp",
+              "_resource.type" => "GCP",
               "_type" => "cloudsql_database",
               "logName" => "projects/development-198123/logs/cloudsql.googleapis.com%2Fmysql.err",
               "resource.labels" => {
